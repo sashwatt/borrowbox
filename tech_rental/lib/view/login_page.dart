@@ -34,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Logo/Icon above the title
                 Image.asset(
                   'assets/images/bbicon.png', 
                   width: 150, 
@@ -109,12 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50), backgroundColor: Color(0xFFF9B401),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  child: const Text('Login', style: TextStyle(fontSize: 18)),
+                  child: const Text('Login', style: TextStyle(fontSize: 18, color: Colors.white),),
                 ),
 
                 // Signup Navigation
@@ -124,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: const Text(
                     'Don\'t have an account? Sign up',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: Colors.blue, fontSize: 17), 
                   ),
                 ),
               ],
