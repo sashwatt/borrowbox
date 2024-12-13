@@ -17,12 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print("Email: ${_emailController.text}");
       print("Password: ${_passwordController.text}");
       
-      // Show a snackbar message indicating the login process is happening
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(content: Text('Logging in...')),
-      // );
-
-      // After login, navigate to the Dashboard page
+      // Navigate to the Dashboard page after login
       Navigator.pushReplacementNamed(context, '/dashboard');
     }
   }
@@ -30,18 +25,31 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black, 
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Logo or App Title
+                // Logo/Icon above the title
+                Image.asset(
+                  'assets/images/bbicon.png', 
+                  width: 150, 
+                  height: 150,
+                ),
+                const SizedBox(height: 20),
+
+                // App Title
                 const Text(
                   'BorrowBox Login',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 40),
 
@@ -53,6 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.email),
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -71,6 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Password',
                     border: const OutlineInputBorder(),
                     prefixIcon: const Icon(Icons.lock),
+                    filled: true,
+                    fillColor: Colors.white,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible
@@ -110,7 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/signup');
                   },
-                  child: const Text('Don\'t have an account? Sign up'),
+                  child: const Text(
+                    'Don\'t have an account? Sign up',
+                    style: TextStyle(color: Colors.blue),
+                  ),
                 ),
               ],
             ),

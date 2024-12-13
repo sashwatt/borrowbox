@@ -4,7 +4,7 @@ class OnboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Set background color to black
+      backgroundColor: Colors.black, 
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -12,7 +12,7 @@ class OnboardScreen extends StatelessWidget {
             // App Icon
             Image.asset(
               'assets/images/bbicon.png',
-              width: 150, // Adjust size as needed
+              width: 150, 
               height: 150,
             ),
             const SizedBox(height: 40),
@@ -23,7 +23,7 @@ class OnboardScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, // Text color to contrast with black background
+                color: Colors.white, 
               ),
             ),
             const SizedBox(height: 40),
@@ -34,7 +34,7 @@ class OnboardScreen extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/login');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Button color
+                backgroundColor: Colors.blue, 
                 minimumSize: const Size(200, 50),
               ),
               child: const Text(
