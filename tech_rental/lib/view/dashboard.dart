@@ -63,7 +63,7 @@ class Dashboard extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CategoryItem(icon: Icons.videogame_asset, label: 'PlayStation'),
+                  CategoryItem(icon: Icons.videogame_asset_rounded, label: 'PlayStation'),
                   CategoryItem(icon: Icons.laptop, label: 'Laptop'),
                   CategoryItem(icon: Icons.camera_alt, label: 'Camera'),
                   CategoryItem(icon: Icons.phone_iphone, label: 'Phone'),
