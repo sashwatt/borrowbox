@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; 
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController= TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
@@ -20,6 +21,20 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to the Dashboard page after login
       Navigator.pushReplacementNamed(context, '/dashboard');
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the status bar to light content (white icons/text)
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.black, 
+        statusBarIconBrightness: Brightness.light, 
+        systemNavigationBarColor: Colors.black, 
+        systemNavigationBarIconBrightness: Brightness.light, 
+      ),
+    );
   }
 
   @override
@@ -52,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 40),
 
-                // Email Field
+                // Username Field
                 TextFormField(
                   controller: _usernameController,
                   keyboardType: TextInputType.emailAddress,
@@ -108,12 +123,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50), backgroundColor: Color(0xFFF9B401),
+                    minimumSize: const Size(double.infinity, 50),
+                    backgroundColor: const Color(0xFFF9B401),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  child: const Text('Login', style: TextStyle(fontSize: 18, color: Colors.white),),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                 ),
 
                 // Signup Navigation

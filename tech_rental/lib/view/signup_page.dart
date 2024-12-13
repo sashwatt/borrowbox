@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Import to control system UI
 
 class SignupPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -8,16 +9,21 @@ class SignupPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
 
   void _signup(BuildContext context) {
-    // Validate the form
     if (_formKey.currentState!.validate()) {
-      // If valid, navigate to login page
       Navigator.pushReplacementNamed(context, '/login');
-    } else {
-      // Show a message when the form is not valid
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill all fields correctly')),
-      );
-    }
+    } 
+  }
+
+  @override
+  void initState() {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.black, 
+        statusBarIconBrightness: Brightness.light, 
+        systemNavigationBarColor: Colors.black, 
+        systemNavigationBarIconBrightness: Brightness.light, 
+      ),
+    );
   }
 
   @override
