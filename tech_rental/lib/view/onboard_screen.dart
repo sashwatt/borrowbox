@@ -4,20 +4,43 @@ class OnboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black, // Set background color to black
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // App Icon
+            Image.asset(
+              'assets/images/bbicon.png',
+              width: 150, // Adjust size as needed
+              height: 150,
+            ),
+            const SizedBox(height: 40),
+
+            // Welcome Text
             const Text(
               'Welcome to BorrowBox!',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // Text color to contrast with black background
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
+
+            // Get Started Button
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/login');
               },
-              child: const Text('Get Started'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Button color
+                minimumSize: const Size(200, 50),
+              ),
+              child: const Text(
+                'Get Started',
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
             ),
           ],
         ),
