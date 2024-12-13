@@ -18,9 +18,9 @@ class _LoginScreenState extends State<LoginScreen> {
       print("Password: ${_passwordController.text}");
       
       // Show a snackbar message indicating the login process is happening
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Logging in...')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('Logging in...')),
+      // );
 
       // After login, navigate to the Dashboard page
       Navigator.pushReplacementNamed(context, '/dashboard');
