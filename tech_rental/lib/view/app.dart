@@ -19,7 +19,7 @@ class BorrowBoxApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       themeMode: ThemeMode.system, 
-      // Define initial route
+      // defining initial route
       initialRoute: '/onboarding',
 
       // Define routes
