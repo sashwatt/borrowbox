@@ -7,14 +7,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController= TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
   void _login() {
     if (_formKey.currentState!.validate()) {
       // Perform login logic here (e.g., API call)
-      print("Email: ${_emailController.text}");
+      print("username: ${_usernameController.text}");
       print("Password: ${_passwordController.text}");
       
       // Navigate to the Dashboard page after login
@@ -54,18 +54,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Email Field
                 TextFormField(
-                  controller: _emailController,
+                  controller: _usernameController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Username',
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.person),
                     filled: true,
                     fillColor: Colors.white,
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return 'Please enter your username';
                     }
                     return null;
                   },
@@ -117,14 +117,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 // Signup Navigation
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/signup');
-                  },
-                  child: const Text(
-                    'Don\'t have an account? Sign up',
-                    style: TextStyle(color: Colors.blue, fontSize: 17), 
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account?",
+                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signup');
+                      },
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(color: Color(0xFFF9B401), fontSize: 16),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

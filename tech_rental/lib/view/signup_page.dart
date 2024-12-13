@@ -8,8 +8,15 @@ class SignupPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
 
   void _signup(BuildContext context) {
+    // Validate the form
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, '/dashboard');
+      // If valid, navigate to login page
+      Navigator.pushReplacementNamed(context, '/login');
+    } else {
+      // Show a message when the form is not valid
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill all fields correctly')),
+      );
     }
   }
 
@@ -50,8 +57,7 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter your username' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter your username' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -66,8 +72,7 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter your phone number' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter your phone number' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -82,8 +87,7 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter your email' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter your email' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -98,18 +102,18 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter your password' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter your password' : null,
                 ),
                 const SizedBox(height: 24),
 
                 // Signup Button
                 ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacementNamed(context, '/login');
+                  onPressed: () {
+                    _signup(context);  // Call the signup function to validate
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50), backgroundColor: Color(0xFFF9B401), // Yellow color for the button
+                    minimumSize: const Size(double.infinity, 50), 
+                    backgroundColor: const Color(0xFFF9B401), // Yellow color for the button
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -121,14 +125,23 @@ class SignupPage extends StatelessWidget {
                 ),
 
                 // Login Navigation
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/login');
-                  },
-                  child: const Text(
-                    'Already have an account? Login',
-                    style: TextStyle(color: Colors.blue),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Already have an account?",
+                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(color: Color(0xFFF9B401), fontSize: 16),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

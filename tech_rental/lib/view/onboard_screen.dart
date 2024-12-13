@@ -34,7 +34,7 @@ class OnboardScreen extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/login');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, 
+                backgroundColor: (Color(0xFFF9B401)), 
                 minimumSize: const Size(200, 50),
               ),
               child: const Text(
