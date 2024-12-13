@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'view/app.dart'; // Import the main app configuration
+import 'view/app.dart'; 
 
 void main() {
   runApp(BorrowBoxApp());
