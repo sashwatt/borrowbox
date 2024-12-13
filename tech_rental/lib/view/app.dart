@@ -12,14 +12,13 @@ class BorrowBoxApp extends StatelessWidget {
       title: 'BorrowBox',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        brightness: Brightness.light, // Default light mode
+        brightness: Brightness.light, 
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark, // Dark mode theme
+        brightness: Brightness.dark, 
         primarySwatch: Colors.blue,
       ),
-      themeMode: ThemeMode.system, // Automatically switch based on system setting
-
+      themeMode: ThemeMode.system, 
       // Define initial route
       initialRoute: '/onboarding',
 
