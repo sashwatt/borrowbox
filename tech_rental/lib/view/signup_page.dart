@@ -14,7 +14,6 @@ class SignupPage extends StatelessWidget {
     } 
   }
 
-  @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
