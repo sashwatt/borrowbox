@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import to control system UI
+import 'package:flutter/services.dart'; 
 
 class SignupPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -114,18 +114,18 @@ class SignupPage extends StatelessWidget {
                 // Signup Button
                 ElevatedButton(
                   onPressed: () {
-                    _signup(context);  // Call the signup function to validate
+                    _signup(context);  
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50), 
-                    backgroundColor: const Color(0xFFF9B401), // Yellow color for the button
+                    backgroundColor: const Color(0xFFF9B401), 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, color: Colors.white), // White text
+                    style: TextStyle(fontSize: 18, color: Colors.white), 
                   ),
                 ),
 
