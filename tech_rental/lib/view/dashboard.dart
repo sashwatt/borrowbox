@@ -4,7 +4,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromRGBO(19, 34, 87, 100),
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
