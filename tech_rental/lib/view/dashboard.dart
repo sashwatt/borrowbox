@@ -8,6 +8,7 @@ class Dashboard extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
+        iconTheme: IconThemeData(color: const Color.fromARGB(255, 255, 255, 255)), // Change back button color
         title: Text(
           'Borrow Box',
           style: TextStyle(color: Colors.yellow[700], fontSize: 20),
@@ -128,7 +129,7 @@ class Dashboard extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Color.fromRGBO(12, 21, 54, 0.612),
           border: Border(
             top: BorderSide(color: Colors.grey.shade800, width: 1), // Optional border
           ),
