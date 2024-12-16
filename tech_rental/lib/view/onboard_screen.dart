@@ -16,12 +16,12 @@ class _OnboardScreenState extends State<OnboardScreen> {
       description: 'Rent your favorite gadgets with ease.',
     ),
     const OnboardingPage(
-      imagePath: 'assets/images/bbicon.png',
+      imagePath: 'assets/icons/rentimg.png',
       title: 'Easy Renting',
       description: 'Browse and rent tech gadgets instantly.',
     ),
     const OnboardingPage(
-      imagePath: 'assets/images/bbicon.png',
+      imagePath: 'assets/icons/safetransaction.png',
       title: 'Safe and Secure',
       description: 'Your transactions are secure and protected.',
     ),
