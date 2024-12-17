@@ -27,17 +27,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
     ),
   ];
 
-  void _nextPage() {
-    if (_currentPage < _pages.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      Navigator.pushReplacementNamed(context, '/login');
-    }
-  }
-
   void _skipToEnd() {
     Navigator.pushReplacementNamed(context, '/login');
   }
@@ -46,47 +35,57 @@ class _OnboardScreenState extends State<OnboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              children: _pages,
+          // PageView for swiping between onboarding screens
+          PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            children: _pages,
+          ),
+          // Skip button at the top right
+          Positioned(
+            top: 60,
+            right: 7,
+            child: TextButton(
+              onPressed: _skipToEnd,
+              child: const Text(
+                'Skip',
+                style: TextStyle(color: Color(0xFFFBC02D), fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
-          // Navigation Buttons
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          // Page indicator dots at the bottom
+          Positioned(
+            bottom: 40,
+            left: 0,
+            right: 0,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: _skipToEnd,
-                  child: const Text(
-                    'Skip',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: _nextPage,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF9B401),
-                    minimumSize: const Size(100, 40),
-                  ),
-                  child: Text(
-                    _currentPage == _pages.length - 1 ? 'Get Started' : 'Next',
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ),
-              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                _pages.length,
+                (index) => buildDot(index),
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // Builds the dot for the indicator
+  Widget buildDot(int index) {
+    return Container(
+      height: 10,
+      width: _currentPage == index ? 20 : 10,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: _currentPage == index ? const Color(0xFFFBC02D) : Colors.grey,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
