@@ -15,8 +15,7 @@ class BorrowBoxApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BorrowBox',
       theme: AppTheme.theme,
-      themeMode:
-          ThemeMode.system, // Automatically choose based on system setting
+      themeMode: ThemeMode.system,
 
       // Define initial route
       initialRoute: '/onboarding',

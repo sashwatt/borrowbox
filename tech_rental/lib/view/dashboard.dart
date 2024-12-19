@@ -27,14 +27,17 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
+      backgroundColor: const Color.fromARGB(156, 19, 34, 87),
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Borrow Box',
-          style: TextStyle(color: Colors.yellow[700], fontSize: 20),
+          style: TextStyle(
+              color: Colors.yellow[700],
+              // fontFamily: 'Montserrart Italic',
+              fontSize: 20),
         ),
         actions: [
           IconButton(

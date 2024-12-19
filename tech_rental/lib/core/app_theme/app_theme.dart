@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(
-      // Define your single theme properties here
-      primaryColor: Colors.blue, // Primary color of the app
-      hintColor: Colors.yellow, // Accent color for highlights
-      fontFamily: 'Roboto', // Font family for the app
-
-      // Define other theme properties as needed
+      primaryColor: Colors.blue,
+      // fontFamily: 'Montserrart Regular',
       appBarTheme: const AppBarTheme(
         color: Colors.black,
         elevation: 0,
