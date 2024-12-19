@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OnboardScreen extends StatefulWidget {
+  const OnboardScreen({super.key});
+
   @override
   _OnboardScreenState createState() => _OnboardScreenState();
 }
@@ -55,7 +57,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
               onPressed: _skipToEnd,
               child: const Text(
                 'Skip',
-                style: TextStyle(color: Color(0xFFFBC02D), fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xFFFBC02D),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -97,6 +102,7 @@ class OnboardingPage extends StatelessWidget {
   final String description;
 
   const OnboardingPage({
+    super.key,
     required this.imagePath,
     required this.title,
     required this.description,
