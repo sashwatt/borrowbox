@@ -116,7 +116,7 @@ class DashboardHomePage extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.filter_alt, color: Colors.yellow[700]),
+                    icon: const Icon(Icons.filter_alt, color: Colors.black87),
                     onPressed: () {},
                   ),
                 ],
