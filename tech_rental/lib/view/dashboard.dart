@@ -289,7 +289,12 @@ class HotDealCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          Image.asset(imagePath, width: 100, height: 100),
+          Image.asset(
+            imagePath,
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
           const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +321,7 @@ class HotDealCard extends StatelessWidget {
   }
 }
 
-// --------------------- Bottom Navigation Item Widget --------------------- //
+// Bottom Navigation Item Widget //
 
 class BottomNavItem extends StatelessWidget {
   final IconData icon;

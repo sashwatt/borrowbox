@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; 
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -17,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Perform login logic here (e.g., API call)
       print("username: ${_usernameController.text}");
       print("Password: ${_passwordController.text}");
-      
+
       // Navigate to the Dashboard page after login
       Navigator.pushReplacementNamed(context, '/dashboard');
     }
@@ -28,10 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.black, 
-        statusBarIconBrightness: Brightness.light, 
-        systemNavigationBarColor: Colors.black, 
-        systemNavigationBarIconBrightness: Brightness.light, 
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
   }
@@ -39,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(19, 34, 87, 100), 
+      backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -49,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  'assets/images/bbicon.png', 
-                  width: 150, 
+                  'assets/images/bbicon.png',
+                  width: 150,
                   height: 150,
                 ),
                 const SizedBox(height: 20),
@@ -148,7 +150,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: const Text(
                         'Sign up',
-                        style: TextStyle(color: Color(0xFFF9B401), fontSize: 16),
+                        style:
+                            TextStyle(color: Color(0xFFF9B401), fontSize: 16),
                       ),
                     ),
                   ],

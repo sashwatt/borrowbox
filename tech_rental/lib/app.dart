@@ -4,7 +4,7 @@ import 'package:tech_rental/view/login_page.dart';
 import 'package:tech_rental/view/onboard_screen.dart';
 import 'package:tech_rental/view/signup_page.dart';
 
-import 'core/app_theme/app_theme.dart'; // Import your custom theme
+import 'core/app_theme/app_theme.dart';
 
 class BorrowBoxApp extends StatelessWidget {
   const BorrowBoxApp({super.key});
@@ -14,8 +14,7 @@ class BorrowBoxApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BorrowBox',
-      theme: AppTheme.lightTheme(), // Use the custom light theme
-      darkTheme: AppTheme.darkTheme(), // Use the custom dark theme
+      theme: AppTheme.theme,
       themeMode:
           ThemeMode.system, // Automatically choose based on system setting
 

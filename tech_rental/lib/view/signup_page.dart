@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; 
+import 'package:flutter/services.dart';
 
 class SignupPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -11,16 +11,16 @@ class SignupPage extends StatelessWidget {
   void _signup(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       Navigator.pushReplacementNamed(context, '/login');
-    } 
+    }
   }
 
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.black, 
-        statusBarIconBrightness: Brightness.light, 
-        systemNavigationBarColor: Colors.black, 
-        systemNavigationBarIconBrightness: Brightness.light, 
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
   }
@@ -28,7 +28,7 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(19, 34, 87, 100),
+      backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -38,8 +38,8 @@ class SignupPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  'assets/images/bbicon.png', 
-                  width: 150, 
+                  'assets/images/bbicon.png',
+                  width: 150,
                   height: 150,
                 ),
                 const Text(
@@ -62,7 +62,8 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) => value!.isEmpty ? 'Enter your username' : null,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Enter your username' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -77,7 +78,8 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) => value!.isEmpty ? 'Enter your phone number' : null,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Enter your phone number' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -92,7 +94,8 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) => value!.isEmpty ? 'Enter your email' : null,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Enter your email' : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -107,25 +110,26 @@ class SignupPage extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  validator: (value) => value!.isEmpty ? 'Enter your password' : null,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Enter your password' : null,
                 ),
                 const SizedBox(height: 24),
 
                 // Signup Button
                 ElevatedButton(
                   onPressed: () {
-                    _signup(context);  
+                    _signup(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50), 
-                    backgroundColor: const Color(0xFFF9B401), 
+                    minimumSize: const Size(double.infinity, 50),
+                    backgroundColor: const Color(0xFFF9B401),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, color: Colors.white), 
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
 
@@ -143,7 +147,8 @@ class SignupPage extends StatelessWidget {
                       },
                       child: const Text(
                         'Sign In',
-                        style: TextStyle(color: Color(0xFFF9B401), fontSize: 16),
+                        style:
+                            TextStyle(color: Color(0xFFF9B401), fontSize: 16),
                       ),
                     ),
                   ],

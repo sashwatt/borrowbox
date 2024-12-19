@@ -1,66 +1,41 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Primary color scheme
-  static const Color primaryColor = Color.fromRGBO(19, 34, 87, 1);
-  static const Color accentColor =
-      Color.fromRGBO(255, 193, 7, 1); // Yellow color for accents
-
-  // Text styles
-  static const TextStyle headingTextStyle = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-  );
-
-  static const TextStyle subheadingTextStyle = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-    color: Colors.white70,
-  );
-
-  // Light Theme
-  static ThemeData lightTheme() {
+  static ThemeData get theme {
     return ThemeData(
-      primaryColor: primaryColor,
-      scaffoldBackgroundColor: Colors.white,
+      // Define your single theme properties here
+      primaryColor: Colors.blue, // Primary color of the app
+      hintColor: Colors.yellow, // Accent color for highlights
+      fontFamily: 'Roboto', // Font family for the app
+
+      // Define other theme properties as needed
       appBarTheme: const AppBarTheme(
-        backgroundColor: primaryColor,
+        color: Colors.black,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(
+          color: Colors.yellow,
+          fontSize: 20,
+        ),
       ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: primaryColor,
-        selectedItemColor: accentColor,
-        unselectedItemColor: Colors.white,
-      ),
+      scaffoldBackgroundColor: const Color.fromRGBO(19, 34, 87, 100),
       textTheme: const TextTheme(
-        titleLarge: headingTextStyle,
-        bodyMedium: subheadingTextStyle,
+        bodyLarge: TextStyle(color: Colors.black),
+        bodyMedium: TextStyle(color: Colors.black),
+        displayLarge: TextStyle(color: Colors.black),
       ),
-      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: accentColor),
-    );
-  }
-
-  // Dark Theme
-  static ThemeData darkTheme() {
-    return ThemeData(
-      primaryColor: primaryColor,
-      hintColor: accentColor,
-      scaffoldBackgroundColor: primaryColor,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: primaryColor,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: primaryColor,
-        selectedItemColor: accentColor,
-        unselectedItemColor: Colors.white70,
-      ),
-      textTheme: TextTheme(
-        titleLarge: headingTextStyle.copyWith(color: Colors.white),
-        bodyMedium: subheadingTextStyle.copyWith(color: Colors.white70),
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.yellow,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
     );
   }
