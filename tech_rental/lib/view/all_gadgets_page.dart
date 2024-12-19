@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class AllGadgetsPage extends StatelessWidget {
+  const AllGadgetsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: const Text('All Gadgets')),
       body: const Center(
-        child: Text('Settings Page',
+        child: Text('All Gadgets page',
             style: TextStyle(color: Colors.white, fontSize: 24)),
       ),
     );

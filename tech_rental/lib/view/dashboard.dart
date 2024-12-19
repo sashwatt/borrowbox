@@ -13,8 +13,8 @@ class _DashboardState extends State<Dashboard> {
   // List of pages to display for each bottom navigation item
   final List<Widget> _pages = [
     const DashboardHomePage(),
+    const AllGadgetsPage(),
     const RecentHistoryPage(),
-    const SettingsPage(),
     const ProfilePage(),
   ];
 
@@ -62,12 +62,12 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () => _onTabTapped(0),
               ),
               BottomNavItem(
-                icon: Icons.access_time,
+                icon: Icons.laptop_mac,
                 isSelected: _currentIndex == 1,
                 onTap: () => _onTabTapped(1),
               ),
               BottomNavItem(
-                icon: Icons.settings,
+                icon: Icons.access_time,
                 isSelected: _currentIndex == 2,
                 onTap: () => _onTabTapped(2),
               ),
@@ -84,7 +84,7 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-//Pages for Each Bottom Navigation Item
+//Pages for Each Bottom Navigation Item //
 
 class DashboardHomePage extends StatelessWidget {
   const DashboardHomePage({super.key});
@@ -214,13 +214,13 @@ class RecentHistoryPage extends StatelessWidget {
   }
 }
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class AllGadgetsPage extends StatelessWidget {
+  const AllGadgetsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Settings Page',
+      child: Text('All Gadgets Page',
           style: TextStyle(color: Colors.white, fontSize: 24)),
     );
   }
@@ -238,7 +238,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-// --------------------- Category and Hot Deal Card Widgets --------------------- //
+// Category and Hot Deal Card Widgets//
 
 class CategoryItem extends StatelessWidget {
   final IconData icon;
