@@ -23,14 +23,14 @@ class BorrowBoxApp extends StatelessWidget {
       // Define routes
       routes: {
         '/onboarding': (context) => const OnboardScreen(),
-        '/login': (context) => LoginScreen(),
+        '/login': (context) => const LoginScreen(),
         '/signup': (context) => SignupPage(),
         '/dashboard': (context) => const Dashboard(),
       },
 
       // Handle unknown routes
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => LoginScreen());
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
       },
     );
   }
