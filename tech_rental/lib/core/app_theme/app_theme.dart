@@ -4,13 +4,14 @@ class AppTheme {
   static ThemeData get theme {
     return ThemeData(
       primaryColor: Colors.blue,
-      // fontFamily: 'Montserrart Regular',
+      fontFamily: 'Oswald Semi Bold',
       appBarTheme: const AppBarTheme(
         color: Colors.black,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.white),
         titleTextStyle: TextStyle(
           color: Colors.yellow,
+          fontFamily: 'Montserrat Bold Italic',
           fontSize: 20,
         ),
       ),

@@ -34,10 +34,7 @@ class _DashboardState extends State<Dashboard> {
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Borrow Box',
-          style: TextStyle(
-              color: Colors.yellow[700],
-              // fontFamily: 'Montserrart Italic',
-              fontSize: 20),
+          style: TextStyle(color: Colors.yellow[700], fontSize: 20),
         ),
         actions: [
           IconButton(
