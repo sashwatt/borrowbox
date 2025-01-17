@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tech_rental/app/app.dart';
+import 'package:tech_rental/app/di/di.dart';
+import 'package:tech_rental/core/network/hive_service.dart';
 
-void main() {
-  runApp(const BorrowBoxApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize Hive Database
+  await HiveService.init();
+
+  // Delete all the hive data and boxes
+  // await HiveService().clearAll();
+  // Initialize Dependencies
+  await initDependencies();
+
+  runApp(
+    const App(),
+  );
 }
