@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tech_rental/view/dashboard.dart';
-import 'package:tech_rental/view/login_page.dart';
-import 'package:tech_rental/view/onboard_screen.dart';
-import 'package:tech_rental/view/signup_page.dart';
+import 'package:tech_rental/app/view/dashboard.dart';
+import 'package:tech_rental/app/view/login_page.dart';
+import 'package:tech_rental/app/view/onboard_screen.dart';
+import 'package:tech_rental/app/view/signup_page.dart';
 
-import 'core/app_theme/app_theme.dart';
+import '../core/common/app_theme/app_theme.dart';
 
 class BorrowBoxApp extends StatelessWidget {
   const BorrowBoxApp({super.key});
