@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50],
+      backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
       body: Stack(
         children: [
           Center(
@@ -29,18 +29,24 @@ class _SplashViewState extends State<SplashView> {
                 SizedBox(
                   height: 200,
                   width: 200,
-                  child: Image.asset('assets/images/splash.png'),
+                  child: Image.asset('assets/images/bbicon.png'),
                 ),
                 const Text(
-                  'Student Course Management',
+                  'BorrowBox - Tech gadgets rental',
                   style: TextStyle(
                     fontSize: 25,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 10),
                 const CircularProgressIndicator(),
                 const SizedBox(height: 10),
-                const Text('version : 1.0.0')
+                const Text(
+                  'version : 1.0.0',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -48,8 +54,11 @@ class _SplashViewState extends State<SplashView> {
             bottom: 10,
             left: MediaQuery.of(context).size.width / 4,
             child: const Text(
-              'Developed by: Sashwat le',
-              style: TextStyle(fontSize: 15),
+              'Developed by: Sashwat',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
