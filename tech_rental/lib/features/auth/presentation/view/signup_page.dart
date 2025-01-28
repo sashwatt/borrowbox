@@ -1,5 +1,3 @@
-// tech_rental/lib/features/auth/presentation/view/signup_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_rental/app/di/di.dart';
@@ -46,13 +44,15 @@ class SignupPage extends StatelessWidget {
                 // Username Field
                 TextFormField(
                   controller: _usernameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Username',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.person, color: Colors.white70),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your username' : null,
                 ),
@@ -62,13 +62,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.phone),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.phone, color: Colors.white70),
                     labelText: 'Phone Number',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your phone number' : null,
                 ),
@@ -78,13 +80,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.email, color: Colors.white70),
                     labelText: 'Email',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your email' : null,
                 ),
@@ -94,13 +98,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white70),
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your password' : null,
                 ),
@@ -130,7 +136,10 @@ class SignupPage extends StatelessWidget {
                   ),
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
 
@@ -140,7 +149,7 @@ class SignupPage extends StatelessWidget {
                   children: [
                     const Text(
                       "Already have an account?",
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
                     ),
                     TextButton(
                       onPressed: () {
