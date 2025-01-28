@@ -49,11 +49,13 @@ class LoginPage extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         labelText: 'Username',
+                        labelStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: Icon(Icons.person, color: Colors.white),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Colors.white10,
                       ),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Username cannot be empty';
@@ -69,11 +71,13 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                       decoration: const InputDecoration(
                         labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock, color: Colors.white),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Colors.white10,
                       ),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Password cannot be empty';
@@ -104,7 +108,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       child: const Text(
                         'Login',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
 
