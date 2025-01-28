@@ -25,8 +25,10 @@ class Registercustomer extends RegisterEvent {
 
 class NavigateToLogin extends RegisterEvent {
   final BuildContext context;
+  final Widget destination;
 
   const NavigateToLogin({
     required this.context,
+    required this.destination,
   });
 }

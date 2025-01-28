@@ -35,7 +35,7 @@ class AuthHiveModel extends Equatable {
   }) : userId = userId ?? const Uuid().v4();
 
   // Initial Constructor (when the user is not set, it returns empty values)
-  AuthHiveModel.initial()
+  const AuthHiveModel.initial()
       : userId = null,
         username = '',
         email = '',

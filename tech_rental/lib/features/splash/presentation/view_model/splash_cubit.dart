@@ -16,8 +16,10 @@ class SplashCubit extends Cubit<void> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                BlocProvider.value(value: _loginBloc, child: LoginPage()),
+            builder: (context) => BlocProvider.value(
+              value: _loginBloc,
+              child: LoginPage(),
+            ),
           ),
         );
       }
