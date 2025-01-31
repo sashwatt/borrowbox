@@ -16,20 +16,16 @@ class AuthHiveModel extends Equatable {
   @HiveField(1) // Username field
   final String username;
 
-  @HiveField(2) // Phone number field
-  final String phone;
-
-  @HiveField(3) // Email field
+  @HiveField(2) // Email field
   final String email;
 
-  @HiveField(4) // Password field
+  @HiveField(3) // Password field
   final String password;
 
   // Constructor, if userId is not passed, it generates one using UUID.
   AuthHiveModel({
     String? userId,
     required this.username,
-    required this.phone,
     required this.email,
     required this.password,
   }) : userId = userId ?? const Uuid().v4();
@@ -39,14 +35,12 @@ class AuthHiveModel extends Equatable {
       : userId = null,
         username = '',
         email = '',
-        phone = '',
         password = '';
 
   // Factory constructor to create an AuthHiveModel from an AuthEntity.
   factory AuthHiveModel.fromEntity(AuthEntity entity) {
     return AuthHiveModel(
       userId: entity.userId,
-      phone: entity.phone,
       email: entity.email,
       username: entity.username,
       password: entity.password,
@@ -57,7 +51,6 @@ class AuthHiveModel extends Equatable {
   AuthEntity toEntity() {
     return AuthEntity(
       userId: userId,
-      phone: phone,
       email: email,
       username: username,
       password: password,
@@ -66,5 +59,5 @@ class AuthHiveModel extends Equatable {
 
   // Equatable properties to compare objects based on their fields.
   @override
-  List<Object?> get props => [userId, phone, email, username, password];
+  List<Object?> get props => [userId, email, username, password];
 }

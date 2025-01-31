@@ -10,16 +10,16 @@ sealed class RegisterEvent extends Equatable {
 class Registercustomer extends RegisterEvent {
   final BuildContext context;
   final String email;
-  final String phone;
   final String username;
   final String password;
+  final File? image;
 
   const Registercustomer({
     required this.context,
     required this.email,
-    required this.phone,
     required this.username,
     required this.password,
+    this.image,
   });
 }
 
