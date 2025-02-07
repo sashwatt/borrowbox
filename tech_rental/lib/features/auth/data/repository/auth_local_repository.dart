@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:tech_rental/core/error/failure.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
@@ -40,6 +42,16 @@ class AuthLocalRepository implements IAuthRepository {
     } catch (e) {
       return Left(LocalDatabaseFailure(
           message: e.toString())); // Return failure in case of error
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    try {
+      final result = await _authDataSource.uploadProfilePicture(file);
+      return Right(result);
+    } catch (e) {
+      return Left(LocalDatabaseFailure(message: e.toString()));
     }
   }
 }

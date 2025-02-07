@@ -39,7 +39,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
       MaterialPageRoute(
         builder: (context) => BlocProvider<LoginBloc>(
           create: (_) => getIt<LoginBloc>(),
-          child: LoginPage(),
+          child: const LoginPage(),
         ),
       ),
     );

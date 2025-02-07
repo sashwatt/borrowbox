@@ -1,41 +1,49 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tech_rental/app/usecase/usecase.dart';
-import 'package:tech_rental/core/error/failure.dart';
-import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
-import 'package:tech_rental/features/auth/domain/repository/auth_repository.dart';
 
-// Parameters required for the registration use case
+import '../../../../core/error/failure.dart';
+import '../entity/auth_entity.dart';
+import '../repository/auth_repository.dart';
+
 class RegisterUserParams extends Equatable {
-  final String email;
   final String username;
+  final String email;
+  final String? image;
   final String password;
 
   const RegisterUserParams({
-    required this.email,
     required this.username,
+    required this.email,
+    this.image,
+    required this.password,
+  });
+
+  //intial constructor
+  const RegisterUserParams.initial({
+    required this.username,
+    required this.email,
+    this.image,
     required this.password,
   });
 
   @override
-  List<Object?> get props => [email, username, password];
+  List<Object?> get props => [username, email, image, password];
 }
 
-// RegisterUseCase to handle registration logic
 class RegisterUseCase implements UsecaseWithParams<void, RegisterUserParams> {
   final IAuthRepository repository;
 
-  // Constructor to inject the repository dependency
   RegisterUseCase(this.repository);
 
   @override
   Future<Either<Failure, void>> call(RegisterUserParams params) {
     final authEntity = AuthEntity(
-      email: params.email,
       username: params.username,
+      email: params.email,
+      image: params.image,
       password: params.password,
     );
-    // Calls the repository to register the user and returns either success or failure
     return repository.registerUser(authEntity);
   }
 }
