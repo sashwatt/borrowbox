@@ -48,6 +48,7 @@ dependencies:
   dio: ^5.8.0+1
   pretty_dio_logger: ^1.4.0
   modal_bottom_sheet: ^3.0.0
+  mocktail: ^1.0.4
 
 dev_dependencies:
   flutter_test:
