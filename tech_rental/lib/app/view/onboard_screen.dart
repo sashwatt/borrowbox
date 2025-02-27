@@ -48,7 +48,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(19, 34, 87, 100),
+      backgroundColor: const Color.fromARGB(156, 25, 44, 113),
       body: Stack(
         children: [
           // PageView for swiping between onboarding screens

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tech_rental/core/network/api_service.dart';
 import 'package:tech_rental/core/network/hive_service.dart';
-import 'package:tech_rental/features/auth/data/data_source/local_data_source/auth_local_datasource.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
+import 'package:tech_rental/features/auth/data/data_source/local_data_source/auth_local_datasource.dart';
 import 'package:tech_rental/features/auth/data/repository/auth_local_repository.dart';
 import 'package:tech_rental/features/auth/data/repository/auth_remote_repository.dart';
 import 'package:tech_rental/features/auth/domain/use_case/login_usecase.dart';
@@ -68,7 +68,7 @@ _initRegisterDependencies() {
   // Register RegisterUseCase
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(
-      getIt<AuthLocalRepository>(),
+      getIt<AuthRemoteRepository>(),
     ),
   );
 
@@ -90,7 +90,7 @@ _initHomeDependencies() async {
 _initLoginDependencies() async {
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(
-      getIt<AuthLocalRepository>(),
+      getIt<AuthRemoteRepository>(),
     ),
   );
 

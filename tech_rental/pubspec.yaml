@@ -50,6 +50,8 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   mocktail: ^1.0.4
   hive_test: ^1.0.1
+  json_annotation: ^4.9.0
+  json_serializable: ^6.9.0
 
 dev_dependencies:
   flutter_test:
