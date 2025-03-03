@@ -54,8 +54,8 @@ class _LoginPageState extends State<LoginPage> {
                     // Username Field
                     _buildTextField(
                       controller: _usernameController,
-                      label: 'Username',
-                      icon: Icons.person,
+                      label: 'Email',
+                      icon: Icons.email,
                       validator: (value) =>
                           value!.isEmpty ? 'Username cannot be empty' : null,
                     ),

@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:tech_rental/core/error/failure.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
+import 'package:tech_rental/features/auth/domain/entity/product_entity.dart';
 import 'package:tech_rental/features/auth/domain/repository/auth_repository.dart';
 
 class AuthLocalRepository implements IAuthRepository {
@@ -21,6 +22,17 @@ class AuthLocalRepository implements IAuthRepository {
           message: e.toString())); // Return failure in case of error
     }
   }
+
+  // @override
+  // Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  //   try {
+  //     final user = await _authDataSource.getProducts();
+  //     return Right(user); // Return the user data wrapped in a Right (success)
+  //   } catch (e) {
+  //     return Left(LocalDatabaseFailure(
+  //         message: e.toString())); // Return failure in case of error
+  //   }
+  // }
 
   @override
   Future<Either<Failure, String>> loginUser(

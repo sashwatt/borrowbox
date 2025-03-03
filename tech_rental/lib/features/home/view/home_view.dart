@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tech_rental/app/view/all_gadgets_page.dart';
 import 'package:tech_rental/app/view/dashboard.dart';
+import 'package:tech_rental/app/view/profile_page.dart';
+import 'package:tech_rental/app/view/recent_history.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

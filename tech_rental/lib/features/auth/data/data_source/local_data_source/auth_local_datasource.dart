@@ -5,6 +5,7 @@ import 'package:tech_rental/core/network/hive_service.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_rental/features/auth/data/model/auth_hive_model.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
+import 'package:tech_rental/features/auth/domain/entity/product_entity.dart';
 
 class AuthLocalDataSource implements IAuthDataSource {
   final HiveService _hiveService;
@@ -21,6 +22,20 @@ class AuthLocalDataSource implements IAuthDataSource {
       password: "",
     ));
   }
+
+  // @override
+  // Future<List<ProductEntity>> getProducts() {
+  //   // Return Empty AuthEntity or actual user data from Hive
+  //   return Future.value([
+  //     const ProductEntity(
+  //       productId: "1", // Just an example, you'd fetch this from Hive
+  //       name: '',
+  //       price: '',
+  //       image: '',
+  //       quantity: '',
+  //     )
+  //   ]);
+  // }
 
   @override
   Future<String> loginUser(String username, String password) async {
