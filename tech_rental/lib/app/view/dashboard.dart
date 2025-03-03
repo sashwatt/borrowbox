@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tech_rental/app/view/all_gadgets_page.dart';
+import 'package:tech_rental/app/view/profile_page.dart';
+import 'package:tech_rental/app/view/recent_history.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -160,7 +163,7 @@ class DashboardHomePage extends StatelessWidget {
                     // Handle view all click
                   },
                   child: Text(
-                    'View all...',
+                    'View all gadgets...',
                     style: TextStyle(
                       color: Colors.yellow[700],
                       fontSize: 14,
@@ -193,47 +196,18 @@ class DashboardHomePage extends StatelessWidget {
                   name: 'Canon EOS R5',
                   price: 'NPR 1400',
                 ),
+                SizedBox(height: 10),
+                HotDealCard(
+                  imagePath: 'assets/images/phone.png',
+                  category: 'Phone',
+                  name: 'Ipone 14 Pro',
+                  price: 'NPR 1800',
+                ),
               ],
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class RecentHistoryPage extends StatelessWidget {
-  const RecentHistoryPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Recent History Page',
-          style: TextStyle(color: Colors.white, fontSize: 24)),
-    );
-  }
-}
-
-class AllGadgetsPage extends StatelessWidget {
-  const AllGadgetsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('All Gadgets Page',
-          style: TextStyle(color: Colors.white, fontSize: 24)),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page',
-          style: TextStyle(color: Colors.white, fontSize: 24)),
     );
   }
 }
