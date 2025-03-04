@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tech_rental/app/view/onboard_screen.dart';
+import 'package:tech_rental/features/home/view/bottom_view/onboard_screen.dart';
 import 'package:tech_rental/features/auth/presentation/view_model/login/login_bloc.dart';
 
 class SplashCubit extends Cubit<void> {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tech_rental/app/view/all_gadgets_page.dart';
-import 'package:tech_rental/app/view/cart.dart';
-import 'package:tech_rental/app/view/dashboard.dart';
-import 'package:tech_rental/app/view/profile_page.dart';
+import 'package:tech_rental/features/home/view/bottom_view/all_gadgets_page.dart';
+import 'package:tech_rental/features/home/view/bottom_view/cart.dart';
+import 'package:tech_rental/features/home/view/bottom_view/dashboard.dart';
+import 'package:tech_rental/features/home/view/bottom_view/profile_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

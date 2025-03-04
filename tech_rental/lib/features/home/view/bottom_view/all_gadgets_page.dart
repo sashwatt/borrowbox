@@ -36,7 +36,7 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: const Icon(Icons.car_crash, color: Colors.white),
+            icon: const Icon(Icons.devices, color: Colors.white),
             onPressed: () {},
           ),
         ],
@@ -119,6 +119,15 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
               const SizedBox(height: 10),
               Text(gadget['price'].toString(),
                   style: const TextStyle(fontSize: 18)), // Gadget price
+              Text(
+                gadget['description'].toString(),
+                style: const TextStyle(fontSize: 18),
+              ),
+
+              Text(
+                gadget['status'].toString(),
+                style: const TextStyle(fontSize: 18),
+              )
             ],
           ),
           actions: [
