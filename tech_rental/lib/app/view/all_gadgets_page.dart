@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
-import 'package:tech_rental/features/auth/domain/entity/product_entity.dart';
-
-import '../../features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart'
-    as authDataSource;
 
 class AllGadgetsPage extends StatefulWidget {
   const AllGadgetsPage({super.key});

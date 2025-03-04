@@ -17,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
   final List<Widget> _pages = [
     const DashboardHomePage(),
     const AllGadgetsPage(),
-    const RecentHistoryPage(),
+    const CartPage(),
     const ProfilePage(),
   ];
 
