@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(156, 19, 34, 87),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(

@@ -194,7 +194,6 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 const SizedBox(height: 24),
 
-                // Signup Button
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -207,6 +206,15 @@ class _SignupPageState extends State<SignupPage> {
                               // image: _image, // Image can be null
                             ),
                           );
+
+                      // Show Snackbar after the event is fired
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Signup Successful!'),
+                          backgroundColor: Colors
+                              .green, // You can change the color as needed
+                        ),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(

@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:tech_rental/core/error/failure.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
-import 'package:tech_rental/features/auth/domain/entity/product_entity.dart';
 import 'package:tech_rental/features/auth/domain/repository/auth_repository.dart';
 
 class AuthLocalRepository implements IAuthRepository {

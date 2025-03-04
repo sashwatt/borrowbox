@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tech_rental/app/constatns/api_endpoints.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRemoteDataSource implements IAuthDataSource {
   final Dio _dio;
@@ -82,7 +82,7 @@ class AuthRemoteDataSource implements IAuthDataSource {
   @override
   Future<List<dynamic>> getProducts() async {
     try {
-      Response response = await _dio.get(ApiEndpoints.baseUrl + 'products');
+      Response response = await _dio.get('${ApiEndpoints.baseUrl}products');
       if (response.statusCode == 200) {
         return response.data;
       } else {

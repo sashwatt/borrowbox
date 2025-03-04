@@ -141,6 +141,7 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
                 // For now, just show a message as an example
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
+                    backgroundColor: Colors.green,
                     content: Text('${gadget['name']} added to cart!'),
                   ),
                 );

@@ -5,7 +5,6 @@ import 'package:tech_rental/core/network/hive_service.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_rental/features/auth/data/model/auth_hive_model.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
-import 'package:tech_rental/features/auth/domain/entity/product_entity.dart';
 
 class AuthLocalDataSource implements IAuthDataSource {
   final HiveService _hiveService;
