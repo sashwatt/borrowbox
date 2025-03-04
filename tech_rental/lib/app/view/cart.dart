@@ -6,8 +6,8 @@ class RecentHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(156, 19, 34, 87),
-      appBar: AppBar(title: const Text('Recent History')),
+      backgroundColor: const Color.fromARGB(156, 19, 34, 87),
+      appBar: AppBar(title: const Text('Cart')),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: const [
