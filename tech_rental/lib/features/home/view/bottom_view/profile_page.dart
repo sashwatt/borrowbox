@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   // Variables for shake detection
   double x = 0.0, y = 0.0, z = 0.0;
   double previousX = 0.0, previousY = 0.0, previousZ = 0.0;
-  static const double shakeThreshold = 100.0;
+  static const double shakeThreshold = 300.0;
 
   @override
   void initState() {
