@@ -148,58 +148,89 @@ class _ProfilePageState extends State<ProfilePage> {
           return Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Profile Picture with Border
-                    CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Colors.transparent,
-                      child: CircleAvatar(
-                        radius: 65,
-                        backgroundColor: Colors.yellow[700],
-                        backgroundImage:
-                            user.image != null && user.image!.isNotEmpty
+                    // Profile Picture with Border and Shadow
+                    Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+                          radius: 85,
+                          backgroundColor: Colors.transparent,
+                          child: CircleAvatar(
+                            radius: 80,
+                            backgroundColor: Colors.yellow[700],
+                            backgroundImage: user.image != null &&
+                                    user.image!.isNotEmpty
                                 ? NetworkImage(user.image!)
                                 : const AssetImage('assets/images/profile.png')
                                     as ImageProvider,
-                      ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 6,
+                                offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.yellow,
+                            size: 20,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 20),
 
                     // Username Styling
-                    Text(user.username,
-                        style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold)),
+                    Text(
+                      user.username,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
 
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 8),
 
                     // Email Styling
-                    Text(user.email,
-                        style: GoogleFonts.poppins(
-                            color: Colors.white70, fontSize: 16)),
+                    Text(
+                      user.email,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white70,
+                        fontSize: 16,
+                      ),
+                    ),
 
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 40),
 
                     // Edit Profile Button Styling
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow[700],
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 12),
+                            horizontal: 50, vertical: 15),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        elevation: 5,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 8,
                       ),
                       child: Text(
                         'Edit Profile',
                         style: GoogleFonts.poppins(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -213,8 +244,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: const Text(
                         'Logout',
                         style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
+                          color: Colors.redAccent,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
