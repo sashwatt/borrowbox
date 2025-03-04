@@ -331,9 +331,9 @@ class BottomNavItem extends StatelessWidget {
 }
 
 // import 'package:flutter/material.dart';
-// import 'package:tech_rental/app/view/all_gadgets_page.dart';
-// import 'package:tech_rental/app/view/profile_page.dart';
-// import 'package:tech_rental/app/view/cart.dart';
+// import 'package:tech_rental/features/home/view/bottom_view/all_gadgets_page.dart';
+// import 'package:tech_rental/features/home/view/bottom_view/cart.dart';
+// import 'package:tech_rental/features/home/view/bottom_view/profile_page.dart';
 
 // class Dashboard extends StatefulWidget {
 //   const Dashboard({super.key});
@@ -362,7 +362,7 @@ class BottomNavItem extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: const Color.fromARGB(156, 19, 34, 87),
+//       backgroundColor: Colors.green, // Set background color to green
 //       appBar: AppBar(
 //         backgroundColor: Colors.black,
 //         elevation: 0,
@@ -419,7 +419,7 @@ class BottomNavItem extends StatelessWidget {
 //   }
 // }
 
-// //Pages for Each Bottom Navigation Item //
+// // Pages for Each Bottom Navigation Item //
 
 // class DashboardHomePage extends StatelessWidget {
 //   const DashboardHomePage({super.key});
@@ -512,7 +512,7 @@ class BottomNavItem extends StatelessWidget {
 //                   imagePath: 'assets/images/ps5.png',
 //                   category: 'PlayStation',
 //                   name: 'PS5',
-//                   price: 'NPR 1400',
+//                   price: 'NPR 4000',
 //                 ),
 //                 SizedBox(height: 10),
 //                 HotDealCard(
@@ -587,41 +587,52 @@ class BottomNavItem extends StatelessWidget {
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(12),
-//       ),
-//       padding: const EdgeInsets.all(16),
-//       child: Row(
-//         children: [
-//           Image.asset(
-//             imagePath,
-//             width: 100,
-//             height: 100,
-//             fit: BoxFit.cover,
+//     return GestureDetector(
+//       onTap: () {
+//         // Show snack bar when card is tapped
+//         ScaffoldMessenger.of(context).showSnackBar(
+//           const SnackBar(
+//             content: Text('Added to Cart Successfully'),
+//             duration: Duration(seconds: 2),
 //           ),
-//           const SizedBox(width: 20),
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(category,
-//                   style: const TextStyle(color: Colors.grey, fontSize: 14)),
-//               const SizedBox(height: 4),
-//               Text(name,
-//                   style: const TextStyle(
-//                       color: Colors.black,
-//                       fontSize: 20,
-//                       fontWeight: FontWeight.bold)),
-//               const SizedBox(height: 8),
-//               Text(price,
-//                   style: const TextStyle(
-//                       color: Colors.black,
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.bold)),
-//             ],
-//           ),
-//         ],
+//         );
+//       },
+//       child: Container(
+//         decoration: BoxDecoration(
+//           color: Colors.white,
+//           borderRadius: BorderRadius.circular(12),
+//         ),
+//         padding: const EdgeInsets.all(16),
+//         child: Row(
+//           children: [
+//             Image.asset(
+//               imagePath,
+//               width: 100,
+//               height: 100,
+//               fit: BoxFit.cover,
+//             ),
+//             const SizedBox(width: 20),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(category,
+//                     style: const TextStyle(color: Colors.grey, fontSize: 14)),
+//                 const SizedBox(height: 4),
+//                 Text(name,
+//                     style: const TextStyle(
+//                         color: Colors.black,
+//                         fontSize: 20,
+//                         fontWeight: FontWeight.bold)),
+//                 const SizedBox(height: 8),
+//                 Text(price,
+//                     style: const TextStyle(
+//                         color: Colors.black,
+//                         fontSize: 16,
+//                         fontWeight: FontWeight.bold)),
+//               ],
+//             ),
+//           ],
+//         ),
 //       ),
 //     );
 //   }

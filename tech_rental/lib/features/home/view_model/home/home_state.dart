@@ -18,9 +18,9 @@ class HomeState extends Equatable {
         Center(
           child: Text('Dashboard'),
         ),
-        Center(
-          child: Text('Account'),
-        ),
+        // Center(
+        //   child: Text('Account'),
+        // ),
       ],
     );
   }

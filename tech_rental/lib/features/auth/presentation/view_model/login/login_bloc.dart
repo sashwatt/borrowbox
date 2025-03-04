@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_rental/features/auth/domain/use_case/login_usecase.dart';
 import 'package:tech_rental/features/auth/presentation/view_model/signup/register_bloc.dart';
 import 'package:tech_rental/features/home/view/home_view.dart';
-import 'package:tech_rental/features/home/view_model/home_cubit.dart';
+import 'package:tech_rental/features/home/view_model/home/home_cubit.dart';
 
 import '../../../../../core/common/snackbar/my_snackbar.dart';
 

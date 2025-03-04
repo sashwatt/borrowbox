@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_rental/app/di/di.dart';
 import 'package:tech_rental/features/auth/presentation/view/login_page.dart';
 
-import '../../auth/presentation/view_model/login/login_bloc.dart';
+import '../../../auth/presentation/view_model/login/login_bloc.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
