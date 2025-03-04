@@ -21,11 +21,11 @@ class RecentHistoryPage extends StatelessWidget {
               name: 'MacBook Air M2',
               date: 'Feb 20, 2024',
               status: 'Pending'),
-          HistoryItem(
-              imagePath: 'assets/images/camera.png',
-              name: 'Canon EOS R5',
-              date: 'Feb 18, 2024',
-              status: 'Returned'),
+          // HistoryItem(
+          //     imagePath: 'assets/images/camera.png',
+          //     name: 'Canon EOS R5',
+          //     date: 'Feb 18, 2024',
+          //     status: 'Returned'),
         ],
       ),
     );
