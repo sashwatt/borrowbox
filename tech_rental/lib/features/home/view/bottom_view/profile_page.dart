@@ -1,8 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sensors_plus/sensors_plus.dart'; // Import the sensors package
+import 'package:tech_rental/app/di/di.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
+import 'package:tech_rental/features/auth/presentation/view/login_page.dart';
+import 'package:tech_rental/features/auth/presentation/view_model/login/login_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,10 +21,63 @@ class _ProfilePageState extends State<ProfilePage> {
   final AuthRemoteDataSource authDataSource = AuthRemoteDataSource(Dio());
   bool _isDarkMode = false; // Local state for dark mode toggle
 
+  // Variables for shake detection
+  double x = 0.0, y = 0.0, z = 0.0;
+  double previousX = 0.0, previousY = 0.0, previousZ = 0.0;
+  static const double shakeThreshold = 100.0;
+
   @override
   void initState() {
     super.initState();
     _userFuture = authDataSource.getCurrentUser();
+
+    // Listen to the accelerometer data for shake detection
+    accelerometerEvents.listen((AccelerometerEvent event) {
+      x = event.x;
+      y = event.y;
+      z = event.z;
+
+      // Calculate change in acceleration
+      double deltaX = x - previousX;
+      double deltaY = y - previousY;
+      double deltaZ = z - previousZ;
+
+      // Calculate total movement
+      double totalMovement =
+          (deltaX * deltaX) + (deltaY * deltaY) + (deltaZ * deltaZ);
+
+      // If total movement exceeds the threshold, trigger logout
+      if (totalMovement > shakeThreshold) {
+        _logoutUser();
+      }
+
+      // Update previous values
+      previousX = x;
+      previousY = y;
+      previousZ = z;
+    });
+  }
+
+  // Function to handle user logout
+  void _logoutUser() async {
+    // Clear the user's session (e.g., using SharedPreferences)
+    // This should include clearing authentication data or session tokens
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider<LoginBloc>(
+          create: (_) => getIt<LoginBloc>(),
+          child: const LoginPage(),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // Dispose of the accelerometer listener when the widget is disposed
+    accelerometerEvents.drain();
   }
 
   @override
@@ -139,7 +197,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       // Logout Button
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider<LoginBloc>(
+                                create: (_) => getIt<LoginBloc>(),
+                                child: const LoginPage(),
+                              ),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'Logout',
                           style: TextStyle(

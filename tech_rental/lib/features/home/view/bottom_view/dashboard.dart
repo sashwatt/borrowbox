@@ -47,7 +47,8 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       body: _pages[_currentIndex], // Display the selected page
-      bottomNavigationBar: Container(
+      bottomNavigationBar: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           color: const Color.fromRGBO(12, 21, 54, 0.612),
           border: Border(
@@ -87,13 +88,51 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-// Pages for Each Bottom Navigation Item //
-
-class DashboardHomePage extends StatelessWidget {
+class DashboardHomePage extends StatefulWidget {
   const DashboardHomePage({super.key});
 
   @override
+  State<DashboardHomePage> createState() => _DashboardHomePageState();
+}
+
+class _DashboardHomePageState extends State<DashboardHomePage> {
+  final List<Gadget> gadgets = [
+    Gadget(
+        category: 'PlayStation',
+        name: 'PS5',
+        price: 'NPR 4000',
+        imagePath: 'assets/images/ps5.png'),
+    Gadget(
+        category: 'Laptop',
+        name: 'MacBook Air M2',
+        price: 'NPR 1400',
+        imagePath: 'assets/images/laptop.png'),
+    Gadget(
+        category: 'Camera',
+        name: 'Canon EOS R5',
+        price: 'NPR 1400',
+        imagePath: 'assets/images/camera.png'),
+    Gadget(
+        category: 'Phone',
+        name: 'Iphone 14 Pro',
+        price: 'NPR 1800',
+        imagePath: 'assets/images/phone.png'),
+  ];
+
+  String selectedCategory = 'All';
+  String searchQuery = '';
+
+  @override
   Widget build(BuildContext context) {
+    List<Gadget> filteredGadgets = gadgets.where((gadget) {
+      return (selectedCategory == 'All' ||
+              gadget.category == selectedCategory) &&
+          (gadget.name.toLowerCase().contains(searchQuery.toLowerCase()) ||
+              gadget.category
+                  .toLowerCase()
+                  .contains(searchQuery.toLowerCase()));
+    }).toList();
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -106,12 +145,24 @@ class DashboardHomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    offset: const Offset(0, 4),
+                    blurRadius: 10,
+                  ),
+                ],
               ),
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      onChanged: (query) {
+                        setState(() {
+                          searchQuery = query;
+                        });
+                      },
+                      decoration: const InputDecoration(
                         hintText: 'Search',
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(horizontal: 16),
@@ -135,14 +186,55 @@ class DashboardHomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Row(
+            // Category filter using CategoryItem
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CategoryItem(
-                    icon: Icons.videogame_asset_rounded, label: 'PlayStation'),
-                CategoryItem(icon: Icons.laptop, label: 'Laptop'),
-                CategoryItem(icon: Icons.camera_alt, label: 'Camera'),
-                CategoryItem(icon: Icons.phone_iphone, label: 'Phone'),
+                  icon: Icons.videogame_asset_rounded,
+                  label: 'PlayStation',
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = 'PlayStation';
+                    });
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.laptop,
+                  label: 'Laptop',
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = 'Laptop';
+                    });
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.camera_alt,
+                  label: 'Camera',
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = 'Camera';
+                    });
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.phone_iphone,
+                  label: 'Phone',
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = 'Phone';
+                    });
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.all_inclusive,
+                  label: 'All',
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = 'All';
+                    });
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -173,37 +265,16 @@ class DashboardHomePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            // Hot Deals Cards
-            const Column(
-              children: [
-                HotDealCard(
-                  imagePath: 'assets/images/ps5.png',
-                  category: 'PlayStation',
-                  name: 'PS5',
-                  price: 'NPR 4000',
-                ),
-                SizedBox(height: 10),
-                HotDealCard(
-                  imagePath: 'assets/images/laptop.png',
-                  category: 'Laptop',
-                  name: 'MacBook Air M2',
-                  price: 'NPR 1400',
-                ),
-                SizedBox(height: 10),
-                HotDealCard(
-                  imagePath: 'assets/images/camera.png',
-                  category: 'Camera',
-                  name: 'Canon EOS R5',
-                  price: 'NPR 1400',
-                ),
-                SizedBox(height: 10),
-                HotDealCard(
-                  imagePath: 'assets/images/phone.png',
-                  category: 'Phone',
-                  name: 'Ipone 14 Pro',
-                  price: 'NPR 1800',
-                ),
-              ],
+            // Filtered Gadgets
+            Column(
+              children: filteredGadgets.map((gadget) {
+                return HotDealCard(
+                  imagePath: gadget.imagePath,
+                  category: gadget.category,
+                  name: gadget.name,
+                  price: gadget.price,
+                );
+              }).toList(),
             ),
           ],
         ),
@@ -212,29 +283,58 @@ class DashboardHomePage extends StatelessWidget {
   }
 }
 
-// Category and Hot Deal Card Widgets//
+class Gadget {
+  final String category;
+  final String name;
+  final String price;
+  final String imagePath;
+
+  Gadget({
+    required this.category,
+    required this.name,
+    required this.price,
+    required this.imagePath,
+  });
+}
 
 class CategoryItem extends StatelessWidget {
   final IconData icon;
   final String label;
+  final VoidCallback onTap;
 
-  const CategoryItem({super.key, required this.icon, required this.label});
+  const CategoryItem({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  offset: const Offset(0, 4),
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(16),
+            child: Icon(icon, size: 24, color: Colors.black),
           ),
-          padding: const EdgeInsets.all(16),
-          child: Icon(icon, size: 24, color: Colors.black),
-        ),
-        const SizedBox(height: 8),
-        Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
-      ],
+          const SizedBox(height: 8),
+          Text(label,
+              style: const TextStyle(color: Colors.white, fontSize: 12)),
+        ],
+      ),
     );
   }
 }
@@ -266,10 +366,18 @@ class HotDealCard extends StatelessWidget {
           ),
         );
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 4),
+              blurRadius: 10,
+            ),
+          ],
         ),
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -307,8 +415,6 @@ class HotDealCard extends StatelessWidget {
   }
 }
 
-// Bottom Navigation Item Widget //
-
 class BottomNavItem extends StatelessWidget {
   final IconData icon;
   final bool isSelected;
@@ -325,8 +431,12 @@ class BottomNavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Icon(icon,
-          size: 28, color: isSelected ? Colors.yellow[700] : Colors.white),
+      child: AnimatedScale(
+        scale: isSelected ? 1.2 : 1.0,
+        duration: const Duration(milliseconds: 200),
+        child: Icon(icon,
+            size: 28, color: isSelected ? Colors.yellow[700] : Colors.white),
+      ),
     );
   }
 }
