@@ -39,17 +39,17 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.error, color: Colors.red, size: 50),
-                  const SizedBox(height: 10),
+                  Icon(Icons.error, color: Colors.red, size: 50),
+                  SizedBox(height: 10),
                   Text(
                     "Failed to load gadgets cc",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5),
                   Text(
                     "Please try again later.",
                     style: TextStyle(color: Colors.white70, fontSize: 14),
@@ -108,7 +108,7 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
             children: [
               Image.network(gadget['imageUrl']!, height: 150),
               const SizedBox(height: 10),
-              Text(gadget['price'].toString()!,
+              Text(gadget['price'].toString(),
                   style: const TextStyle(fontSize: 18)),
             ],
           ),
