@@ -80,27 +80,19 @@ class AuthRemoteDataSource implements IAuthDataSource {
   }
 
   @override
-//   Future<AuthEntity> getCurrentUser() async {
-//     try {
-//       SharedPreferences prefs = await SharedPreferences.getInstance();
-//       String token = prefs.getString('token') ?? '';
+  Future<List<dynamic>> getProducts() async {
+    try {
+      Response response = await _dio.get(ApiEndpoints.baseUrl + 'products');
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception("Failed to login: ${response.statusMessage}");
+      }
+    } catch (e) {
+      throw Exception("Login Error: ${e.toString()}");
+    }
+  }
 
-//       Response response =
-//           await _dio.get(ApiEndpoints.baseUrl + ApiEndpoints.getCustomer,
-//               options: Options(headers: {
-//                 HttpHeaders.authorizationHeader: "Bearer $token",
-//               }));
-
-//       if (response.statusCode == 200) {
-//         return response.data['token'];
-//       } else {
-//         throw Exception("Failed to login: ${response.statusMessage}");
-//       }
-//     } catch (e) {
-//       throw Exception("Login Error: ${e.toString()}");
-//     }
-//   }
-// }
   @override
   Future<AuthEntity> getCurrentUser() async {
     try {
@@ -117,8 +109,6 @@ class AuthRemoteDataSource implements IAuthDataSource {
       if (response.statusCode == 200) {
         final data = response.data; // Extract user data
         // log data to the console flutter
-        print('object');
-        print(data['data']);
         return AuthEntity(
           userId: data['data']['_id'],
           image: data['data']['image'] ?? '',
