@@ -1,11 +1,3 @@
-// import 'package:flutter_test/flutter_test.dart';
-
-// void main() {
-//   testWidgets('custom elevated button ...', (tester) async {
-//     // TODO: Implement test
-//   });
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tech_rental/app/widget/custom_elevated_button.dart';

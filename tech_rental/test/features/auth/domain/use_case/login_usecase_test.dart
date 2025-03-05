@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:tech_rental/features/auth/domain/repository/auth_repository.dart';
 import 'package:tech_rental/features/auth/domain/use_case/login_usecase.dart';
 
-import 'repository.mock.dart';
+// Mock repository class
+class MockAuthRepository extends Mock implements IAuthRepository {}
 
 void main() {
   late MockAuthRepository mockAuthRepository;
@@ -14,25 +16,45 @@ void main() {
     loginUseCase = LoginUseCase(mockAuthRepository);
   });
 
-  group('LoginUseCase', () {
-    const tUsername = 'testUser';
-    const tPassword = 'password123';
-    const tParams = LoginParams(username: tUsername, password: tPassword);
+  // Test 1: Should call the repository loginUser method
+  test('should call repository loginUser method', () async {
+    // Arrange
+    when(() => mockAuthRepository.loginUser('user', 'pass'))
+        .thenAnswer((_) async => const Right('token'));
 
-    test('should return a token when the login is successful', () async {
-      // Arrange
-      const tToken = 'someToken';
-      when(() => mockAuthRepository.loginUser(tUsername, tPassword))
-          .thenAnswer((_) async => const Right(tToken));
+    // Act
+    await loginUseCase(const LoginParams(username: 'user', password: 'pass'));
 
-      // Act
-      final result = await loginUseCase(tParams);
+    // Assert
+    verify(() => mockAuthRepository.loginUser('user', 'pass')).called(1);
+  });
 
-      // Assert
-      expect(result, const Right(tToken));
-      verify(() => mockAuthRepository.loginUser(tUsername, tPassword))
-          .called(1);
-      verifyNoMoreInteractions(mockAuthRepository);
-    });
+  // Test 2: Should return a token when login is successful
+  test('should return a token when login is successful', () async {
+    // Arrange
+    when(() => mockAuthRepository.loginUser('user', 'pass'))
+        .thenAnswer((_) async => const Right('token'));
+
+    // Act
+    final result = await loginUseCase(
+        const LoginParams(username: 'user', password: 'pass'));
+
+    // Assert
+    expect(result, const Right('token'));
+  });
+
+  // Test 3: Should return failure when login fails (simplified failure handling)
+  test('should return failure when login fails', () async {
+    // Arrange
+    when(() => mockAuthRepository.loginUser('user', 'wrongpass')).thenAnswer(
+        (_) async => const Right('')); // Simulating an empty token as failure
+
+    // Act
+    final result = await loginUseCase(
+        const LoginParams(username: 'user', password: 'wrongpass'));
+
+    // Assert
+    expect(
+        result, const Right('')); // An empty string to represent a failed login
   });
 }

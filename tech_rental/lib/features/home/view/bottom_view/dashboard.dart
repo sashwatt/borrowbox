@@ -375,36 +375,37 @@ class HotDealCard extends StatelessWidget {
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
               offset: const Offset(0, 4),
-              blurRadius: 10,
+              blurRadius: 6,
             ),
           ],
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(8), // Reduced padding
         child: Row(
           children: [
             Image.asset(
               imagePath,
-              width: 100,
-              height: 100,
+              width: 80, // Reduced image width
+              height: 80, // Reduced image height
               fit: BoxFit.cover,
             ),
-            const SizedBox(width: 20),
+            const SizedBox(
+                width: 12), // Adjusted spacing between image and text
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(category,
-                    style: const TextStyle(color: Colors.grey, fontSize: 14)),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12)),
                 const SizedBox(height: 4),
                 Text(name,
                     style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 16, // Reduced font size for name
                         fontWeight: FontWeight.bold)),
-                const SizedBox(height: 8),
+                const SizedBox(height: 4),
                 Text(price,
                     style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14, // Reduced font size for price
                         fontWeight: FontWeight.bold)),
               ],
             ),
