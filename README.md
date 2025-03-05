@@ -1,0 +1,1 @@
+BorrowBox - Tech Gadgets Rental App is a Flutter-based platform for renting tech gadgets. It features a dashboard with hot deals, gadget browsing, cart tracking, and profile management. Built with Clean Architecture and Bloc for state management, it integrates MongoDB for remote storage and Hive for local storage, ensuring a seamless user experience.
