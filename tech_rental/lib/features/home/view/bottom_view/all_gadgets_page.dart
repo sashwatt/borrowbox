@@ -125,7 +125,7 @@ class _AllGadgetsPageState extends State<AllGadgetsPage> {
                   return GestureDetector(
                     onTap: () {
                       gadgets[index]['imageUrl'] = gadgets[index]['imageUrl']!
-                          .replaceAll('localhost', '10.0.2.2');
+                          .replaceAll('localhost', '192.168.18.4');
                       _showGadgetDetails(context, gadgets[index]);
                     },
                     child: GadgetCard(
@@ -232,7 +232,7 @@ class GadgetCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.network(
-                imagePath.replaceAll('localhost', '10.0.2.2'),
+                imagePath.replaceAll('localhost', '192.168.18.4'),
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => const Icon(
                     Icons.broken_image,
