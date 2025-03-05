@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tech_rental/app/di/di.dart';
+import 'package:tech_rental/features/auth/presentation/view/login_page.dart';
+import 'package:tech_rental/features/auth/presentation/view_model/login/login_bloc.dart';
+import 'package:tech_rental/features/auth/presentation/view_model/signup/register_bloc.dart';
 
 class SignupPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -8,22 +12,7 @@ class SignupPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _signup(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, '/login');
-    }
-  }
-
-  void initState() {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-    );
-  }
+  SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +44,15 @@ class SignupPage extends StatelessWidget {
                 // Username Field
                 TextFormField(
                   controller: _usernameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Username',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.person, color: Colors.white70),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your username' : null,
                 ),
@@ -71,13 +62,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.phone),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.phone, color: Colors.white70),
                     labelText: 'Phone Number',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your phone number' : null,
                 ),
@@ -87,13 +80,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.email, color: Colors.white70),
                     labelText: 'Email',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your email' : null,
                 ),
@@ -103,13 +98,15 @@ class SignupPage extends StatelessWidget {
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white70),
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white70),
+                    border: const OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.white.withOpacity(0.1),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) =>
                       value!.isEmpty ? 'Enter your password' : null,
                 ),
@@ -118,7 +115,17 @@ class SignupPage extends StatelessWidget {
                 // Signup Button
                 ElevatedButton(
                   onPressed: () {
-                    _signup(context);
+                    if (_formKey.currentState!.validate()) {
+                      context.read<RegisterBloc>().add(
+                            Registercustomer(
+                              context: context,
+                              email: _emailController.text,
+                              username: _usernameController.text,
+                              phone: _phoneController.text,
+                              password: _passwordController.text,
+                            ),
+                          );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
@@ -129,7 +136,10 @@ class SignupPage extends StatelessWidget {
                   ),
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
 
@@ -139,11 +149,21 @@ class SignupPage extends StatelessWidget {
                   children: [
                     const Text(
                       "Already have an account?",
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return BlocProvider<LoginBloc>(
+                                create: (_) => getIt<LoginBloc>(),
+                                child: LoginPage(),
+                              );
+                            },
+                          ),
+                        );
                       },
                       child: const Text(
                         'Sign In',

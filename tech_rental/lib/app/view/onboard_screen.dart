@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tech_rental/app/di/di.dart';
+import 'package:tech_rental/features/auth/presentation/view/login_page.dart';
+import 'package:tech_rental/features/auth/presentation/view_model/login/login_bloc.dart';
 
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
@@ -29,8 +33,16 @@ class _OnboardScreenState extends State<OnboardScreen> {
     ),
   ];
 
-  void _skipToEnd() {
-    Navigator.pushReplacementNamed(context, '/login');
+  void _navigateToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider<LoginBloc>(
+          create: (_) => getIt<LoginBloc>(),
+          child: LoginPage(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -49,24 +61,33 @@ class _OnboardScreenState extends State<OnboardScreen> {
             },
             children: _pages,
           ),
-          // Skip button at the top right
-          Positioned(
-            top: 60,
-            right: 7,
-            child: TextButton(
-              onPressed: _skipToEnd,
-              child: const Text(
-                'Skip',
-                style: TextStyle(
-                    color: Color(0xFFFBC02D),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
+
+          // Skip button (Top-right for first 2 screens, hidden on last)
+          if (_currentPage < 2)
+            Positioned(
+              top: 60,
+              right: 20,
+              child: ElevatedButton(
+                onPressed: _navigateToLogin,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFBC02D),
+                  foregroundColor: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Text(
+                  'Skip',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
+
           // Page indicator dots at the bottom
           Positioned(
-            bottom: 40,
+            bottom: 110,
             left: 0,
             right: 0,
             child: Row(
@@ -77,6 +98,29 @@ class _OnboardScreenState extends State<OnboardScreen> {
               ),
             ),
           ),
+
+          // Start Button (Only on last screen)
+          if (_currentPage == 2)
+            Positioned(
+              bottom: 40,
+              left: 30,
+              right: 30,
+              child: ElevatedButton(
+                onPressed: _navigateToLogin,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFBC02D),
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Start',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
         ],
       ),
     );
