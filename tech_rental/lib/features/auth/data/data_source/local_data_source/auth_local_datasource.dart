@@ -17,7 +17,6 @@ class AuthLocalDataSource implements IAuthDataSource {
     return Future.value(const AuthEntity(
       userId: "1", // Just an example, you'd fetch this from Hive
       username: "",
-      phone: "",
       email: "",
       password: "",
     ));

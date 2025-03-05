@@ -1,9 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tech_rental/core/network/api_service.dart';
 import 'package:tech_rental/core/network/hive_service.dart';
 import 'package:tech_rental/features/auth/data/data_source/local_data_source/auth_local_datasource.dart';
+import 'package:tech_rental/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
 import 'package:tech_rental/features/auth/data/repository/auth_local_repository.dart';
+import 'package:tech_rental/features/auth/data/repository/auth_remote_repository.dart';
 import 'package:tech_rental/features/auth/domain/use_case/login_usecase.dart';
 import 'package:tech_rental/features/auth/domain/use_case/register_user_usecase.dart';
+import 'package:tech_rental/features/auth/domain/use_case/upload_image_usecase.dart';
 import 'package:tech_rental/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:tech_rental/features/auth/presentation/view_model/signup/register_bloc.dart';
 import 'package:tech_rental/features/home/view_model/home_cubit.dart';
@@ -14,7 +19,7 @@ final getIt = GetIt.instance;
 Future<void> initDependencies() async {
   // First initialize hive service
   await _initHiveService();
-
+  await _initApiService();
   await _initHomeDependencies();
   await _initRegisterDependencies();
   await _initLoginDependencies();
@@ -24,6 +29,13 @@ Future<void> initDependencies() async {
 
 _initHiveService() {
   getIt.registerLazySingleton<HiveService>(() => HiveService());
+}
+
+_initApiService() {
+  // Remote Data Source
+  getIt.registerLazySingleton<Dio>(
+    () => ApiService(Dio()).dio,
+  );
 }
 
 _initRegisterDependencies() {
@@ -37,6 +49,22 @@ _initRegisterDependencies() {
     () => AuthLocalRepository(getIt<AuthLocalDataSource>()),
   );
 
+  // ✅ Register Remote Data Source (Fixing the issue)
+  getIt.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSource(getIt<Dio>()),
+  );
+
+  // ✅ Now Register Remote Repository correctly
+  getIt.registerLazySingleton<AuthRemoteRepository>(
+    () => AuthRemoteRepository(getIt<AuthRemoteDataSource>()),
+  );
+
+  getIt.registerLazySingleton<UploadImageUsecase>(
+    () => UploadImageUsecase(
+      getIt<AuthRemoteRepository>(),
+    ),
+  );
+
   // Register RegisterUseCase
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(
@@ -44,12 +72,11 @@ _initRegisterDependencies() {
     ),
   );
 
-  // Initialize BatchBloc and CourseBloc (make sure they are registered if needed)
-
   // Register RegisterBloc with the dependencies it needs
   getIt.registerLazySingleton<RegisterBloc>(
     () => RegisterBloc(
       registerUseCase: getIt<RegisterUseCase>(),
+      uploadImageUsecase: getIt<UploadImageUsecase>(),
     ),
   );
 }

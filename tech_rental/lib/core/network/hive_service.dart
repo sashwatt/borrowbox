@@ -44,6 +44,11 @@ class HiveService {
     await Hive.deleteBoxFromDisk(HiveTableConstant.userBox);
   }
 
+  // Clear customer Box
+  Future<void> clearcustomerBox() async {
+    await Hive.deleteBoxFromDisk(HiveTableConstant.userBox);
+  }
+
   Future<void> close() async {
     await Hive.close();
   }
