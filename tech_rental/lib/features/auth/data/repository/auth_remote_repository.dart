@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:tech_rental/core/error/failure.dart';
 import 'package:tech_rental/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
@@ -12,9 +12,13 @@ class AuthRemoteRepository implements IAuthRepository {
   AuthRemoteRepository(this._authRemoteDataSource);
 
   @override
-  Future<Either<Failure, AuthEntity>> getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+  Future<Either<Failure, AuthEntity>> getCurrentUser() async {
+    try {
+      final result = await _authRemoteDataSource.getCurrentUser();
+      return Right(result);
+    } catch (e) {
+      return Left(ApiFailure(message: e.toString()));
+    }
   }
 
   @override
@@ -23,18 +27,22 @@ class AuthRemoteRepository implements IAuthRepository {
     try {
       final result = await _authRemoteDataSource.loginUser(username, password);
       return Right(result);
+    } on DioException catch (e) {
+      return Left(ApiFailure(message: "DioException: ${e.message}"));
     } catch (e) {
-      return Left(ApiFailure(message: e.toString()));
+      return Left(ApiFailure(message: "Error: ${e.toString()}"));
     }
   }
 
   @override
   Future<Either<Failure, void>> registerUser(AuthEntity user) async {
     try {
-      _authRemoteDataSource.registerUser(user);
+      await _authRemoteDataSource.registerUser(user); // Awaiting the result
       return const Right(null);
+    } on DioException catch (e) {
+      return Left(ApiFailure(message: "DioException: ${e.message}"));
     } catch (e) {
-      return Left(ApiFailure(message: e.toString()));
+      return Left(ApiFailure(message: "Error: ${e.toString()}"));
     }
   }
 
@@ -43,8 +51,10 @@ class AuthRemoteRepository implements IAuthRepository {
     try {
       final imageName = await _authRemoteDataSource.uploadProfilePicture(file);
       return Right(imageName);
+    } on DioException catch (e) {
+      return Left(ApiFailure(message: "DioException: ${e.message}"));
     } catch (e) {
-      return Left(ApiFailure(message: e.toString()));
+      return Left(ApiFailure(message: "Error: ${e.toString()}"));
     }
   }
 }

@@ -52,7 +52,7 @@ class _SplashViewState extends State<SplashView> {
           ),
           Positioned(
             bottom: 10,
-            left: MediaQuery.of(context).size.width / 4,
+            left: MediaQuery.of(context).size.width / 3,
             child: const Text(
               'Developed by: Sashwat',
               style: TextStyle(

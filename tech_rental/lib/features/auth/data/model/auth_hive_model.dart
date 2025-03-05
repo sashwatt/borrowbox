@@ -1,63 +1,63 @@
+// part 'auth_hive_model.g.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tech_rental/app/constatns/hive_table_constants.dart';
 import 'package:tech_rental/features/auth/domain/entity/auth_entity.dart';
 import 'package:uuid/uuid.dart';
 
-part 'auth_hive_model.g.dart'; // Ensure you run build_runner to generate this file.
+part 'auth_hive_model.g.dart';
 
-@HiveType(
-    typeId:
-        HiveTableConstant.userTableId) // Define the typeId for the Hive model.
+@HiveType(typeId: HiveTableConstant.userTableId)
 class AuthHiveModel extends Equatable {
-  @HiveField(0) // User ID field, required for Hive serialization.
+  @HiveField(0)
   final String? userId;
-
-  @HiveField(1) // Username field
+  @HiveField(1)
   final String username;
-
-  @HiveField(2) // Email field
+  @HiveField(2)
   final String email;
-
-  @HiveField(3) // Password field
+  @HiveField(3)
   final String password;
+  @HiveField(4)
+  final String? image;
 
-  // Constructor, if userId is not passed, it generates one using UUID.
   AuthHiveModel({
     String? userId,
     required this.username,
     required this.email,
     required this.password,
+    this.image,
   }) : userId = userId ?? const Uuid().v4();
 
-  // Initial Constructor (when the user is not set, it returns empty values)
+  // Initial Constructor
   const AuthHiveModel.initial()
-      : userId = null,
+      : userId = '',
         username = '',
         email = '',
-        password = '';
+        password = '',
+        image = '';
 
-  // Factory constructor to create an AuthHiveModel from an AuthEntity.
+  // From Entity
   factory AuthHiveModel.fromEntity(AuthEntity entity) {
     return AuthHiveModel(
       userId: entity.userId,
-      email: entity.email,
       username: entity.username,
+      email: entity.email,
       password: entity.password,
+      image: entity.image,
     );
   }
 
-  // Converts an AuthHiveModel to an AuthEntity.
+  // To Entity
   AuthEntity toEntity() {
     return AuthEntity(
       userId: userId,
-      email: email,
       username: username,
+      email: email,
       password: password,
+      image: image,
     );
   }
 
-  // Equatable properties to compare objects based on their fields.
   @override
-  List<Object?> get props => [userId, email, username, password];
+  List<Object?> get props => [userId, username, email, password, image];
 }

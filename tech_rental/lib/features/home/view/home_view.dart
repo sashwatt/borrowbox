@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tech_rental/app/view/dashboard.dart';
+import 'package:tech_rental/features/home/view/bottom_view/all_gadgets_page.dart';
+import 'package:tech_rental/features/home/view/bottom_view/cart.dart';
+import 'package:tech_rental/features/home/view/bottom_view/dashboard.dart';
+import 'package:tech_rental/features/home/view/bottom_view/profile_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -14,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
   final List<Widget> _pages = [
     const DashboardHomePage(),
     const AllGadgetsPage(),
-    const RecentHistoryPage(),
+    const CartPage(),
     const ProfilePage(),
   ];
 
@@ -67,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () => _onTabTapped(1),
               ),
               BottomNavItem(
-                icon: Icons.access_time,
+                icon: Icons.shopping_cart,
                 isSelected: _currentIndex == 2,
                 onTap: () => _onTabTapped(2),
               ),

@@ -22,6 +22,20 @@ class AuthLocalDataSource implements IAuthDataSource {
     ));
   }
 
+  // @override
+  // Future<List<ProductEntity>> getProducts() {
+  //   // Return Empty AuthEntity or actual user data from Hive
+  //   return Future.value([
+  //     const ProductEntity(
+  //       productId: "1", // Just an example, you'd fetch this from Hive
+  //       name: '',
+  //       price: '',
+  //       image: '',
+  //       quantity: '',
+  //     )
+  //   ]);
+  // }
+
   @override
   Future<String> loginUser(String username, String password) async {
     try {

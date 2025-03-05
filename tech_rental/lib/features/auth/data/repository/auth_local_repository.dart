@@ -22,6 +22,17 @@ class AuthLocalRepository implements IAuthRepository {
     }
   }
 
+  // @override
+  // Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  //   try {
+  //     final user = await _authDataSource.getProducts();
+  //     return Right(user); // Return the user data wrapped in a Right (success)
+  //   } catch (e) {
+  //     return Left(LocalDatabaseFailure(
+  //         message: e.toString())); // Return failure in case of error
+  //   }
+  // }
+
   @override
   Future<Either<Failure, String>> loginUser(
       String username, String password) async {
